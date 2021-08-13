@@ -1,9 +1,11 @@
 package uz.drop.sharedelementtransition
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.transition.TransitionInflater
+import com.google.android.material.transition.MaterialContainerTransform
 import uz.drop.sharedelementtransition.databinding.FragmentDetailBinding
 
 /**
@@ -16,8 +18,15 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val materialContainerTransform = MaterialContainerTransform().apply {
+            duration = 300L
+            isDrawDebugEnabled = true
+            scrimColor = Color.TRANSPARENT
+            setAllContainerColors(Color.WHITE)
+
+        }
         val moveTransition = TransitionInflater.from(context).inflateTransition(android.R.transition.move)
-        sharedElementEnterTransition = moveTransition
+        sharedElementEnterTransition = materialContainerTransform
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -47,11 +47,11 @@ class ImageVH(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: Image) {
-        binding.image.transitionName = "image$adapterPosition"
+        binding.root.transitionName = "image$adapterPosition"
         binding.image.setImageResource(item.image)
 
         binding.root.setOnClickListener {
-            clickListener?.invoke(item, binding.image)
+            clickListener?.invoke(item, binding.root)
         }
     }
 }
